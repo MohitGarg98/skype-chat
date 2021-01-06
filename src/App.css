@@ -1,38 +1,63 @@
-.App {
+.body-container{
+  display: flex;
+}
+h1, p{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+p{
+  font-size: 20px;
+  width: 100%;
+  height: 40px;
+  background-color: gray;
   color: white;
+  line-height: 40px;
+  cursor: pointer;
 }
-
-.App-link {
-  color: #61dafb;
+.left-aside-bar{
+  width: 20%;
+  border: 2px solid;
+  height: 96vh;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 450px) {
+  .left-aside-bar {
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+} 
+@media only screen and (max-width: 1000px) and (min-width: 450px) {
+  .left-aside-bar {
+    width: 30%;
   }
+} 
+.main-container{
+  width: 80%;
+  border: 2px solid ;
+}
+.msg-list{
+  list-style: none;
+  width: 99%;
+  height: 82vh;
+  padding: 0;
+}
+.msg{
+  border: 1px solid;
+  padding: 5px;
+  margin: 5px;
+}
+.type-msg{
+  height: 7vh;
+  width: 90%;
+}
+@media only screen and (max-width: 1000px) {
+  .type-msg {
+    width: 75%;
+  }
+} 
+.send-btn{
+  width: 60px;
+  height: 8vh;
+  background-color: rgb(146, 228, 24);
+}
+.back-btn{
+  display: block;
+  height: 50px;
 }
