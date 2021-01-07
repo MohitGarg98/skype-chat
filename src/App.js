@@ -1,5 +1,5 @@
 import {useSelector, useDispatch} from "react-redux";
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import './App.css';
 import {mohitMsg} from './actions';
@@ -9,25 +9,8 @@ function App() {
   const dispatch = useDispatch();
   let messages = state.mohit;
   const [text, settext] = useState();
-  const [chatDisplay, setChatDisplay] = useState("block");
-  const [showBackButton, setShowBackButton] = useState(false);
-  const [showLeftBar, setShowLeftBar] = useState(true);
-  const [showChatting, setShowChatting] = useState(true);
 
   console.log(window.innerWidth);
-  useEffect(() => {
-    if(window.innerWidth < 450){
-      setChatDisplay("none");
-    }
-  }, [])
-
-  window.addEventListener('resize', function () {
-    if(window.innerWidth < 450){
-      setChatDisplay("none");
-    }else{
-      setChatDisplay('block');
-    }
-  });
 
   function addMessages(e) {
     e.preventDefault();
@@ -41,40 +24,50 @@ function App() {
     settext(e.target.value);
   }
 
-  function removeChatting(params) {
-    if(window.innerWidth < 450){
-      setShowLeftBar(false);
-      setShowBackButton(true);
-      setShowChatting(true);
-      setChatDisplay('block')
-    }
-  }
-
-  function showChatName() {
-    setShowLeftBar(true);
-    setShowBackButton(false);
-    setShowChatting(false);
-  }
 
   return (
     <div className="App">
       <div className="body-container">
-        {showLeftBar ? 
         <div className="left-aside-bar">
-          <h1 className="text-center">Chats</h1>
-          <p onClick={removeChatting}>Mohit</p>
-        </div> : null}        
-        {showBackButton ? <button className="back-btn" onClick={showChatName}>Back</button> : null}  
-        {showChatting ?       
-        <div style={{display: chatDisplay}} className="main-container">
+          <input type="text" placeholder="Search Skype" className="search"/><button className="search-btn"><i className="fas fa-search"></i></button>
+          <div className="logo-container">
+            <i className="fas fa-comment-alt"></i>
+            <i className="fas fa-phone-volume"></i>
+            <i className="fas fa-address-book"></i>
+            <i className="fas fa-bell"></i>
+          </div>
+          <h4 className="text-center chat-heading">Recent Chats</h4>
+          <ul className="names-container">
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Nikhil</span></div></li><span className="line"></span>
+            <li className="names" style={{backgroundColor: "white"}}><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Mohit</span></div></li><span className="line"></span>
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Bhavesh</span></div></li><span className="line"></span>
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Harshit</span></div></li><span className="line"></span>
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Rohan</span></div></li><span className="line"></span>
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Gagan</span></div></li><span className="line"></span>
+            <li className="names"><div className="name-container"><img src="./user.png" alt="user" className="user-image"/><span className="user-name">Gopal</span></div></li><span className="line"></span>
+          </ul>
+        </div>
+            
+        <div className="main-container">
+          <h2 className="user-name-heading">Mohit</h2>
+          <span className="call-container">
+            <i className="fas fa-users"></i>
+            <i className="fas fa-phone-volume"></i>
+          </span>
+          <span className="line"></span>
           <ul className="msg-list">
+            <li className="msg-2">Hi, Mohit</li>
+            <li className="msg-2">How r u..</li>
+            <li className="msg">I am fine</li>
+            <li className="msg">How r u..</li>
+            <li className="msg-2">I m also fine</li>
+            <li className="msg-2">Where r u..</li>
             {messages.map((msg, index) => (<li className="msg" key={index}>{msg}</li>))}
           </ul>
           <form onSubmit={addMessages}>
-            <input name="message" onChange={setTextMsg} className="type-msg" type="text" placeholder="Type a message" value={text}/>
-            <input className="send-btn" type="submit" value="Send"/>
+            <input name="message" autoComplete="off" onChange={setTextMsg} className="type-msg" type="text" placeholder="Type a message" value={text}/><button className="send-btn" type="submit"><i className="fas fa-paper-plane"></i></button>
           </form>
-        </div> : null}
+        </div>
       </div>
     </div>
   );
